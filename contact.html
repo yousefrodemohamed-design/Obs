@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تواصل معنا</title>
+<script type="module" src="firebase.js"></script>
+<style>
+body { font-family:Arial; background:#f0f4f8; padding:20px; }
+input, textarea, button { width:100%; padding:12px; margin:8px 0; border-radius:8px; }
+button { background:#007bff; color:white; border:none; cursor:pointer; }
+button:hover { background:#0056b3; }
+.card { background:white; padding:20px; margin:15px 0; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+<h2>تواصل معنا</h2>
+
+<div class="card">
+<input id="contactName" placeholder="اسمك">
+<input id="contactEmail" placeholder="البريد الإلكتروني">
+<textarea id="contactMessage" placeholder="رسالتك"></textarea>
+<button id="sendMsg">إرسال</button>
+</div>
+
+<script type="module">
+import { db } from './firebase.js';
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+document.getElementById("sendMsg").onclick = async () => {
+  const name = document.getElementById("contactName").value;
+  const email = document.getElementById("contactEmail").value;
+  const msg = document.getElementById("contactMessage").value;
+  if(!name || !email || !msg) return alert("املأ كل البيانات");
+
+  await addDoc(collection(db,"messages"), {
+    name,email,msg,date:new Date().toLocaleString()
+  });
+
+  alert("تم إرسال الرسالة، شكرًا لك!");
+  document.getElementById("contactName").value='';
+  document.getElementById("contactEmail").value='';
+  document.getElementById("contactMessage").value='';
+};
+</script>
+</body>
+</html>
