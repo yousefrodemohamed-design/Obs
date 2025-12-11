@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS - Welcome</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* نص متحرك */
+        .animated-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+            animation: moveText 3s infinite alternate;
+        }
+
+        @keyframes moveText {
+            0% { transform: translateY(0px); color: #007bff; }
+            50% { transform: translateY(-15px); color: #00bfa5; }
+            100% { transform: translateY(0px); color: #ff6f00; }
+        }
+
+        /* زرار أكبر مع Hover effect */
+        .enter-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.1);
+            background: #0056b3;
+        }
+
+        /* ترتيب البطاقة في وسط الصفحة */
+        .center-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-card">
+        <div class="card">
+            <div class="animated-text">مرحبًا بك في OBS</div>
+            <p>منصة إضافة وعرض الإعلانات والخدمات</p>
+            <button class="enter-btn" onclick="goToUser()">ادخل للموقع</button>
+        </div>
+    </div>
+
+    <script>
+        function goToUser() {
+            window.location.href = "user.html";
+        }
+    </script>
+</body>
+</html>
